@@ -1,0 +1,22 @@
+name: Java CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Compile Java
+      run: javac src/com/taskmanager/model/Task.java src/com/taskmanager/service/TaskService.java src/com/taskmanager/controller/TaskController.java src/com/taskmanager/Main.java
+    - name: Run Java program
+      run: java -cp src com.taskmanager.Main
